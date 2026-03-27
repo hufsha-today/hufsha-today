@@ -11,6 +11,7 @@ const categoryBadge: Record<string, { bg: string; text: string }> = {
   "הפלגות": { bg: "#e0f7fa", text: "#00838f" },
   "טיולים מאורגנים": { bg: "#e8f5e9", text: "#2e7d32" },
   "אטרקציות": { bg: "#fce4ec", text: "#c62828" },
+  "מדריכים": { bg: "#e3f2fd", text: "#1565c0" },
 };
 
 export default function PostCard({ post }: { post: PostFrontmatter }) {

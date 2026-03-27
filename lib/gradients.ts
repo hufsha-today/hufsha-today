@@ -32,6 +32,7 @@ export const categoryColors: Record<string, string> = {
   'טיולים מאורגנים': '#2e7d32',
   'אטרקציות': '#c62828',
   'יעדים': '#E8862A',
+  'מדריכים': '#1565c0',
 };
 
 export function getCategoryColor(category: string): string {
