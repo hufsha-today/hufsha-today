@@ -178,3 +178,7 @@ a {
 .article-content tr:nth-child(even) {
   background: #faf9f7;
 }
+
+.article-content > *:last-child {
+  margin-bottom: 0;
+}
