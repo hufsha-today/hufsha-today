@@ -72,7 +72,8 @@ export default async function DestinationPage({ params }: Props) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           <div className="absolute bottom-6 right-6 text-white">
-            <span className="text-4xl mb-2 block">{dest.flag}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`https://flagcdn.com/24x18/${dest.flag}.png`} alt="" style={{ display: "inline", verticalAlign: "middle", marginLeft: 4 }} className="mb-2" />
             <h1 className="text-3xl sm:text-4xl font-black">{dest.name}</h1>
             <p className="text-white/80 text-sm mt-1">{dest.country} · {dest.flightTime} טיסה</p>
           </div>
@@ -144,7 +145,8 @@ export default async function DestinationPage({ params }: Props) {
                   href={`/destinations/${d.slug}`}
                   className="bg-white border border-border rounded-xl px-5 py-3 text-sm font-medium text-dark hover:border-orange hover:text-orange transition-colors no-underline"
                 >
-                  {d.flag} {d.name}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`https://flagcdn.com/24x18/${d.flag}.png`} alt="" style={{ display: "inline", verticalAlign: "middle", marginLeft: 4 }} /> {d.name}
                 </Link>
               ))}
           </div>
