@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Heebo } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -33,6 +34,9 @@ export const metadata: Metadata = {
     url: "https://hufsha.today",
   },
   alternates: { canonical: "https://hufsha.today" },
+  verification: {
+    google: "aqrghQh1eFPMriYcDnYZZeOV4lcklP7PKw1Te5D1mYI",
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +47,16 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl" className={heebo.variable}>
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-E8S24VE12X"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-E8S24VE12X');`}
+        </Script>
         <Header />
         <main>{children}</main>
         <Footer />
