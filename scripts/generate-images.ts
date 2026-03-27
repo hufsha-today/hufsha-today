@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const API_KEY = "AIzaSyC815gP7e7WDsHYRasye0eZj8X9uay3bwo";
+const API_KEY = "AIzaSyAxaqUBhxZaapFWXrMp8mVeUXBNqN8kZCc";
 const MODEL = "gemini-3-pro-image-preview";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 
