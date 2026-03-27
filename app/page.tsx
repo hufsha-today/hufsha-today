@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
+import { getAllDestinations } from "@/lib/destinations";
 import SearchBar from "@/components/SearchBar";
 import DestinationCard from "@/components/DestinationCard";
 import PostCard from "@/components/PostCard";
@@ -14,6 +15,16 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const posts = getAllPosts();
+  const destinations = getAllDestinations();
+
+  function getPostCount(destName: string, country?: string) {
+    return posts.filter(
+      (p) =>
+        p.frontmatter.destination === destName ||
+        p.frontmatter.country === destName ||
+        (country && p.frontmatter.country === country)
+    ).length;
+  }
 
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -61,34 +72,19 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-[2fr_1fr_1fr] grid-rows-[260px_220px] gap-3.5 max-md:grid-cols-2 max-md:grid-rows-none max-md:[&>*]:h-[170px]">
-          <DestinationCard
-            name="יוון"
-            slug="greece"
-            sub="רודוס · כרתים · סנטוריני · אתונה"
-            tag="הכי מחופש"
-            spanRows
-          />
-          <DestinationCard
-            name="איטליה"
-            slug="italy"
-            sub="3 שעות טיסה"
-          />
-          <DestinationCard
-            name="קפריסין"
-            slug="cyprus"
-            sub="שעה טיסה"
-          />
-          <DestinationCard
-            name="בודפשט"
-            slug="budapest"
-            sub="2:45 שעות"
-            tag="טרנדינג"
-          />
-          <DestinationCard
-            name="דובאי"
-            slug="dubai"
-            sub="3 שעות טיסה"
-          />
+          {destinations.map((d, i) => {
+            const count = getPostCount(d.name, d.country);
+            return (
+              <DestinationCard
+                key={d.slug}
+                name={d.name}
+                slug={d.slug}
+                sub={`${d.flightTime} טיסה · ${count} מאמרים`}
+                tag={i === 0 ? "הכי מחופש" : undefined}
+                spanRows={i === 0}
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -99,7 +95,12 @@ export default function HomePage() {
           className="flex items-center gap-5 bg-kosher-bg border border-kosher-border rounded-2xl py-6 px-7 cursor-pointer transition-transform duration-200 hover:-translate-y-[2px] mb-14 no-underline"
         >
           <div className="w-[52px] h-[52px] bg-orange rounded-[14px] flex items-center justify-center text-2xl flex-shrink-0">
-            ✡
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://flagcdn.com/24x18/il.png"
+              alt="דגל ישראל"
+              style={{ display: "inline" }}
+            />
           </div>
           <div>
             <h3 className="text-[17px] font-bold text-dark mb-0.5">

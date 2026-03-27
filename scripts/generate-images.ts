@@ -77,6 +77,16 @@ const destinationPrompts: Record<string, string> = {
     "Beautiful panoramic view of Budapest Hungary, Hungarian Parliament building along the Danube river at sunset, chain bridge, warm golden light, travel photography, cinematic wide shot, no text, no watermarks, photorealistic, 16:9 landscape format.",
   dubai:
     "Stunning view of Dubai skyline with Burj Khalifa at sunset, modern architecture, golden hour lighting, desert city, travel photography, cinematic wide shot, no text, no watermarks, photorealistic, 16:9 landscape format.",
+  rhodes:
+    "Beautiful aerial view of Rhodes Greece, medieval old town, turquoise harbor, ancient walls, sunny Mediterranean, travel photography, cinematic wide shot, no text, no watermarks, 16:9",
+  crete:
+    "Stunning Balos beach in Crete Greece, turquoise lagoon, white sand, dramatic cliffs, travel photography, cinematic, no text, no watermarks, 16:9",
+  santorini:
+    "Beautiful Santorini sunset, white buildings blue domes, caldera view, travel photography, cinematic, no text, no watermarks, 16:9",
+  athens:
+    "Acropolis Athens Greece golden hour, Parthenon temple, city panorama, travel photography, cinematic wide shot, no text, no watermarks, 16:9",
+  rome:
+    "Rome Colosseum golden hour, ancient ruins, warm light, travel photography, cinematic wide shot, no text, no watermarks, 16:9",
 };
 
 async function main() {
