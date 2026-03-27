@@ -1,8 +1,15 @@
+import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const API_KEY = "AIzaSyAxaqUBhxZaapFWXrMp8mVeUXBNqN8kZCc";
+dotenv.config({ path: ".env.local" });
+
+const API_KEY = process.env.GEMINI_API_KEY;
+if (!API_KEY) {
+  console.error("❌ GEMINI_API_KEY not found in .env.local");
+  process.exit(1);
+}
 const MODEL = "gemini-3-pro-image-preview";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 
