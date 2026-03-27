@@ -23,7 +23,8 @@ export default function KosherPage() {
 
       <div className="flex items-center gap-5 bg-kosher-bg border border-kosher-border rounded-2xl py-6 px-7 mb-10">
         <div className="w-[52px] h-[52px] bg-orange rounded-[14px] flex items-center justify-center text-2xl flex-shrink-0">
-          ✡
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="https://flagcdn.com/24x18/il.png" alt="דגל ישראל" style={{ display: "inline" }} />
         </div>
         <div>
           <h1 className="text-2xl font-black text-dark mb-1">כשר בחו&quot;ל</h1>
