@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import html from "remark-html";
 
 const postsDir = path.join(process.cwd(), "content", "posts");
@@ -43,7 +44,7 @@ export function getAllPosts(): Post[] {
     .map((f) => {
       const raw = fs.readFileSync(path.join(postsDir, f), "utf8");
       const { data, content } = matter(raw);
-      const result = remark().use(html, { sanitize: false }).processSync(content);
+      const result = remark().use(remarkGfm).use(html, { sanitize: false }).processSync(content);
       return {
         frontmatter: data as PostFrontmatter,
         content,
