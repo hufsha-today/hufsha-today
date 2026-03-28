@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import sharp from "sharp";
 
 dotenv.config({ path: ".env.local" });
 
@@ -13,12 +14,61 @@ if (!API_KEY) {
 const MODEL = "gemini-3-pro-image-preview";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 
+const VIVID =
+  ", ultra realistic, hyper detailed, looks like real photograph, authentic scene, exactly as it appears in reality, vibrant saturated colors, punchy tones, enhanced contrast, crisp details, professionally color graded, Lightroom edited aesthetic, luxury travel magazine editorial photography, no text, no titles, no watermarks, no logos, clean image, rule of thirds composition, professional framing, natural headroom";
+
 const postsDir = path.join(process.cwd(), "content", "posts");
 const postsOutputDir = path.join(process.cwd(), "public", "images", "posts");
 const destOutputDir = path.join(process.cwd(), "public", "images", "destinations");
 
-async function generateImage(outputPath: string, prompt: string, label: string): Promise<void> {
-  if (fs.existsSync(outputPath)) {
+async function compressImage(
+  base64Data: string,
+  isHero: boolean = false,
+): Promise<Buffer> {
+  const buffer = Buffer.from(base64Data, "base64");
+  const maxWidth = isHero ? 1920 : 1200;
+  return await sharp(buffer)
+    .resize({ width: maxWidth, withoutEnlargement: true })
+    .jpeg({ quality: 85 })
+    .toBuffer();
+}
+
+async function compressExistingFile(
+  filePath: string,
+  maxWidth: number = 1200,
+): Promise<void> {
+  const stats = fs.statSync(filePath);
+  if (stats.size <= 200 * 1024) return; // Skip if under 200KB
+
+  const originalSize = stats.size;
+  const buffer = fs.readFileSync(filePath);
+  const compressed = await sharp(buffer)
+    .resize({ width: maxWidth, withoutEnlargement: true })
+    .jpeg({ quality: 85 })
+    .toBuffer();
+
+  const outputPath = filePath.replace(/\.png$/, ".jpg");
+  fs.writeFileSync(outputPath, compressed);
+  if (outputPath !== filePath) {
+    fs.unlinkSync(filePath);
+  }
+
+  const saved = originalSize - compressed.length;
+  const pct = ((saved / originalSize) * 100).toFixed(1);
+  console.log(
+    `  📦 ${path.basename(filePath)}: ${(originalSize / 1024).toFixed(0)}KB → ${(compressed.length / 1024).toFixed(0)}KB (saved ${pct}%)`,
+  );
+}
+
+async function generateImage(
+  outputPath: string,
+  prompt: string,
+  label: string,
+  isHero: boolean = false,
+): Promise<void> {
+  // Check for both .png and .jpg versions
+  const jpgPath = outputPath.replace(/\.png$/, ".jpg");
+  if (fs.existsSync(outputPath) || fs.existsSync(jpgPath)) {
     console.log(`⏭️  ${label} — image already exists, skipping`);
     return;
   }
@@ -38,13 +88,17 @@ async function generateImage(outputPath: string, prompt: string, label: string):
       generationConfig: {
         responseModalities: ["IMAGE", "TEXT"],
         temperature: 0.8,
+        image_size: "2K",
+        aspectRatio: "16:9",
       },
     }),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`❌ API error for ${label}: ${response.status} ${errorText}`);
+    console.error(
+      `❌ API error for ${label}: ${response.status} ${errorText}`,
+    );
     return;
   }
 
@@ -55,9 +109,12 @@ async function generateImage(outputPath: string, prompt: string, label: string):
     const parts = candidate.content?.parts || [];
     for (const part of parts) {
       if (part.inlineData?.mimeType?.startsWith("image/")) {
-        const buffer = Buffer.from(part.inlineData.data, "base64");
-        fs.writeFileSync(outputPath, buffer);
-        console.log(`✅ Saved: ${outputPath}`);
+        const compressed = await compressImage(part.inlineData.data, isHero);
+        const finalPath = outputPath.replace(/\.png$/, ".jpg");
+        fs.writeFileSync(finalPath, compressed);
+        console.log(
+          `✅ Saved: ${finalPath} (${(compressed.length / 1024).toFixed(0)}KB)`,
+        );
         return;
       }
     }
@@ -68,25 +125,35 @@ async function generateImage(outputPath: string, prompt: string, label: string):
 
 const destinationPrompts: Record<string, string> = {
   greece:
-    "Beautiful aerial view of Santorini Greece, white-washed buildings with blue domes overlooking the Aegean sea, golden hour sunlight, travel photography, cinematic wide shot, no text, no watermarks, photorealistic, 16:9 landscape format.",
+    "Photorealistic photograph of Santorini Greece, white-washed buildings with blue domes overlooking the turquoise Aegean sea, golden hour sunlight, warm Mediterranean atmosphere" +
+    VIVID,
   italy:
-    "Stunning view of Rome Colosseum at golden hour, warm lighting, Italian architecture, travel photography, cinematic composition, no text, no watermarks, photorealistic, 16:9 landscape format.",
+    "Photorealistic photograph of the Colosseum in Rome Italy, ancient Roman architecture at golden hour, warm amber sunlight casting long shadows, historic grandeur" +
+    VIVID,
   cyprus:
-    "Beautiful turquoise Mediterranean beach in Cyprus, crystal clear water, rocky coastline, Paphos region, warm sunlight, travel photography, cinematic wide shot, no text, no watermarks, photorealistic, 16:9 landscape format.",
+    "Photorealistic photograph of a turquoise Mediterranean beach in Paphos Cyprus, crystal clear shallow water over white sand, rocky coastline, warm afternoon sunlight" +
+    VIVID,
   budapest:
-    "Beautiful panoramic view of Budapest Hungary, Hungarian Parliament building along the Danube river at sunset, chain bridge, warm golden light, travel photography, cinematic wide shot, no text, no watermarks, photorealistic, 16:9 landscape format.",
+    "Photorealistic photograph of the Hungarian Parliament building along the Danube river in Budapest at sunset, chain bridge in foreground, warm golden reflections on water" +
+    VIVID,
   dubai:
-    "Stunning view of Dubai skyline with Burj Khalifa at sunset, modern architecture, golden hour lighting, desert city, travel photography, cinematic wide shot, no text, no watermarks, photorealistic, 16:9 landscape format.",
+    "Photorealistic photograph of Dubai skyline with Burj Khalifa at sunset, modern glass towers, golden hour lighting reflecting off buildings, desert metropolis atmosphere" +
+    VIVID,
   rhodes:
-    "Beautiful aerial view of Rhodes Greece, medieval old town, turquoise harbor, ancient walls, sunny Mediterranean, travel photography, cinematic wide shot, no text, no watermarks, 16:9",
+    "Photorealistic photograph of Rhodes old town Greece, medieval stone walls and turquoise harbor, sunny Mediterranean day, ancient fortress architecture" +
+    VIVID,
   crete:
-    "Stunning Balos beach in Crete Greece, turquoise lagoon, white sand, dramatic cliffs, travel photography, cinematic, no text, no watermarks, 16:9",
+    "Photorealistic photograph of Balos beach lagoon in Crete Greece, turquoise shallow water, white sand, dramatic rocky cliffs, clear sunny sky" +
+    VIVID,
   santorini:
-    "Beautiful Santorini sunset, white buildings blue domes, caldera view, travel photography, cinematic, no text, no watermarks, 16:9",
+    "Photorealistic photograph of Oia village in Santorini at sunset, white buildings with blue domes, caldera view over the Aegean, warm pink and orange sky" +
+    VIVID,
   athens:
-    "Acropolis Athens Greece golden hour, Parthenon temple, city panorama, travel photography, cinematic wide shot, no text, no watermarks, 16:9",
+    "Photorealistic photograph of the Acropolis and Parthenon temple in Athens Greece at golden hour, ancient columns against blue sky, city panorama below" +
+    VIVID,
   rome:
-    "Rome Colosseum golden hour, ancient ruins, warm light, travel photography, cinematic wide shot, no text, no watermarks, 16:9",
+    "Photorealistic photograph of the Colosseum in Rome at golden hour, ancient stone arches with warm amber light, clear sky, historic atmosphere" +
+    VIVID,
 };
 
 async function main() {
@@ -97,7 +164,7 @@ async function main() {
   console.log("=== Generating destination images ===\n");
   for (const [slug, prompt] of Object.entries(destinationPrompts)) {
     const outputPath = path.join(destOutputDir, `${slug}.png`);
-    await generateImage(outputPath, prompt, `destination: ${slug}`);
+    await generateImage(outputPath, prompt, `destination: ${slug}`, true);
     await new Promise((r) => setTimeout(r, 2000));
   }
 
@@ -105,29 +172,33 @@ async function main() {
   console.log("\n=== Generating post images ===\n");
   if (!fs.existsSync(postsDir)) {
     console.log("No posts directory found");
-    return;
+  } else {
+    const files = fs.readdirSync(postsDir).filter((f) => f.endsWith(".md"));
+    console.log(`Found ${files.length} posts\n`);
+
+    for (const file of files) {
+      const raw = fs.readFileSync(path.join(postsDir, file), "utf8");
+      const { data } = matter(raw);
+
+      const prompt =
+        `Photorealistic photograph of ${data.destination || data.title}, ${data.excerpt || "travel scene"}, golden hour lighting, cinematic composition` +
+        VIVID;
+
+      const outputPath = path.join(postsOutputDir, `${data.slug}.png`);
+      await generateImage(outputPath, prompt, `post: ${data.slug}`);
+      await new Promise((r) => setTimeout(r, 2000));
+    }
   }
 
-  const files = fs.readdirSync(postsDir).filter((f) => f.endsWith(".md"));
-  console.log(`Found ${files.length} posts\n`);
-
-  for (const file of files) {
-    const raw = fs.readFileSync(path.join(postsDir, file), "utf8");
-    const { data } = matter(raw);
-
-    const prompt = [
-      `Create a beautiful travel photograph of ${data.destination || data.title}.`,
-      `Style: warm golden hour lighting, cinematic composition, high quality travel photography.`,
-      data.excerpt ? `Context: ${data.excerpt}` : "",
-      `Wide landscape format (16:9). No text, no watermarks, no people's faces.`,
-      `Photorealistic, professional travel magazine quality.`,
-    ]
-      .filter(Boolean)
-      .join(" ");
-
-    const outputPath = path.join(postsOutputDir, `${data.slug}.png`);
-    await generateImage(outputPath, prompt, `post: ${data.slug}`);
-    await new Promise((r) => setTimeout(r, 2000));
+  // Compress existing oversized images
+  console.log("\n=== Compressing existing oversized images ===\n");
+  for (const dir of [destOutputDir, postsOutputDir]) {
+    if (!fs.existsSync(dir)) continue;
+    const images = fs.readdirSync(dir).filter((f) => /\.(png|jpg|jpeg)$/i.test(f));
+    for (const img of images) {
+      const imgPath = path.join(dir, img);
+      await compressExistingFile(imgPath);
+    }
   }
 
   console.log("\n🎉 Done generating all images!");
