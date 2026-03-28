@@ -230,7 +230,7 @@ function BlogPostPage({ slug }: { slug: string }) {
             alt={fm.title}
             fill
             className="object-cover"
-            sizes="740px"
+            sizes="(max-width: 768px) 100vw, 740px"
             priority
             fallbackGradient={gradient}
           />
@@ -383,7 +383,7 @@ function CountryPage({ slug }: { slug: string }) {
             alt={dest.name}
             fill
             className="object-cover"
-            sizes="740px"
+            sizes="(max-width: 768px) 100vw, 740px"
             priority
             fallbackGradient={gradient}
           />

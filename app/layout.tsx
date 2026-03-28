@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Heebo } from "next/font/google";
 import Header from "@/components/Header";
@@ -45,10 +45,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["https://hufsha.today/images/og-default.png"],
   },
-  alternates: { canonical: "https://hufsha.today" },
+  alternates: {
+    canonical: "https://hufsha.today",
+    languages: { "he-IL": "https://hufsha.today" },
+  },
   verification: {
     google: "aqrghQh1eFPMriYcDnYZZeOV4lcklP7PKw1Te5D1mYI",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#E8862A",
 };
 
 export default function RootLayout({
@@ -77,7 +84,12 @@ export default function RootLayout({
               "@type": "Organization",
               name: "חופשה היום",
               url: "https://hufsha.today",
-              logo: "https://hufsha.today/images/mascot-logo-transparent.png",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://hufsha.today/images/mascot-logo-transparent.png",
+                width: 512,
+                height: 512,
+              },
               description: "הבלוג הישראלי לטיולים וחופשות. מדריכי יעדים, טיולים מאורגנים, הפלגות, כשר — הכל בעברית.",
             }),
           }}
