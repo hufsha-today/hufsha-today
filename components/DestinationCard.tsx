@@ -18,7 +18,7 @@ export default function DestinationCard({ name, slug, sub, tag, spanRows }: Prop
 
   return (
     <Link
-      href={`/destinations/${slug}`}
+      href={`/${slug}`}
       className={`group relative block rounded-2xl overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-[3px] no-underline ${
         spanRows ? "row-span-2" : ""
       }`}

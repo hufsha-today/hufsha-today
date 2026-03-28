@@ -66,7 +66,7 @@ export default function HomePage() {
       <div className="max-w-[1100px] mx-auto px-7 pb-14">
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-[22px] font-[800] text-dark">יעדים פופולריים</h2>
-          <Link href="/destinations/greece" className="text-[13px] text-orange font-medium">
+          <Link href="/greece" className="text-[13px] text-orange font-medium">
             כל היעדים ←
           </Link>
         </div>

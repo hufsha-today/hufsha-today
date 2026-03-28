@@ -15,11 +15,11 @@ export default function Footer() {
 
         <div>
           <h4 className="text-[13px] font-bold text-white mb-2.5">יעדים</h4>
-          <Link href="/destinations/greece" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">יוון</Link>
-          <Link href="/destinations/italy" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">איטליה</Link>
-          <Link href="/destinations/cyprus" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">קפריסין</Link>
-          <Link href="/destinations/budapest" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">בודפשט</Link>
-          <Link href="/destinations/dubai" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">דובאי</Link>
+          <Link href="/greece" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">יוון</Link>
+          <Link href="/italy" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">איטליה</Link>
+          <Link href="/cyprus" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">קפריסין</Link>
+          <Link href="/budapest" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">בודפשט</Link>
+          <Link href="/dubai" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">דובאי</Link>
         </div>
 
         <div>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { getAllDestinations } from "@/lib/destinations";
+import { getAllCities } from "@/lib/cities";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://hufsha.today";
@@ -13,7 +14,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const destinations = getAllDestinations().map((d) => ({
-    url: `${base}/destinations/${d.slug}`,
+    url: `${base}/${d.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  const cities = getAllCities().map((c) => ({
+    url: `${base}/${c.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
@@ -28,5 +36,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/about`, changeFrequency: "monthly" as const, priority: 0.3 },
   ].map((p) => ({ ...p, lastModified: new Date() }));
 
-  return [...staticPages, ...destinations, ...posts];
+  return [...staticPages, ...destinations, ...cities, ...posts];
 }
