@@ -49,6 +49,10 @@ export const metadata: Metadata = {
     canonical: "https://hufsha.today",
     languages: { "he-IL": "https://hufsha.today" },
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
   verification: {
     google: "aqrghQh1eFPMriYcDnYZZeOV4lcklP7PKw1Te5D1mYI",
   },
