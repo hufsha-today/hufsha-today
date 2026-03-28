@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import type { PostFrontmatter } from "@/lib/posts";
 import { getDestinationGradient } from "@/lib/gradients";
@@ -26,15 +27,16 @@ export default function PostCard({ post }: { post: PostFrontmatter }) {
       <div className="bg-white rounded-[14px] overflow-hidden border border-border cursor-pointer transition-all duration-[250ms] hover:-translate-y-[3px] hover:shadow-[0_6px_24px_rgba(0,0,0,0.05)]">
         {/* Card image */}
         <div
-          className="h-[160px] bg-cover bg-center relative"
+          className="h-[160px] relative"
           style={{ background: imgFailed ? gradient : undefined }}
         >
           {!imgFailed && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={`/images/posts/${post.slug}.png`}
               alt={post.title}
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 33vw"
               onError={() => setImgFailed(true)}
             />
           )}
@@ -46,7 +48,7 @@ export default function PostCard({ post }: { post: PostFrontmatter }) {
           )}
           {/* Category badge */}
           <div
-            className="absolute top-2.5 right-2.5 text-[10px] font-bold py-[3px] px-2.5 rounded-md"
+            className="absolute top-2.5 right-2.5 z-10 text-[10px] font-bold py-[3px] px-2.5 rounded-md"
             style={{ background: badge.bg, color: badge.text }}
           >
             {post.category}

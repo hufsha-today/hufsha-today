@@ -59,7 +59,7 @@ export default function KosherPage() {
         name: "דף הבית",
         item: "https://hufsha.today",
       },
-      { "@type": "ListItem", position: 2, name: "כשר בחו\"ל" },
+      { "@type": "ListItem", position: 2, name: "כשר בחו\"ל", item: "https://hufsha.today/kosher" },
     ],
   };
 

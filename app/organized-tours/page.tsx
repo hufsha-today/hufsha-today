@@ -59,7 +59,7 @@ export default function OrganizedToursPage() {
         name: "דף הבית",
         item: "https://hufsha.today",
       },
-      { "@type": "ListItem", position: 2, name: "טיולים מאורגנים" },
+      { "@type": "ListItem", position: 2, name: "טיולים מאורגנים", item: "https://hufsha.today/organized-tours" },
     ],
   };
 

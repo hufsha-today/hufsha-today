@@ -32,6 +32,18 @@ export const metadata: Metadata = {
     locale: "he_IL",
     siteName: "חופשה היום",
     url: "https://hufsha.today",
+    images: [
+      {
+        url: "https://hufsha.today/images/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "חופשה היום — המדריך שלך לחופשה הבאה",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://hufsha.today/images/og-default.png"],
   },
   alternates: { canonical: "https://hufsha.today" },
   verification: {
@@ -57,6 +69,19 @@ export default function RootLayout({
   gtag('js', new Date());
   gtag('config', 'G-E8S24VE12X');`}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "חופשה היום",
+              url: "https://hufsha.today",
+              logo: "https://hufsha.today/images/mascot-logo-transparent.png",
+              description: "הבלוג הישראלי לטיולים וחופשות. מדריכי יעדים, טיולים מאורגנים, הפלגות, כשר — הכל בעברית.",
+            }),
+          }}
+        />
         <Header />
         <main>{children}</main>
         <Footer />

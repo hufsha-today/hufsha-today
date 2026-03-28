@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { getDestinationGradient } from "@/lib/gradients";
 
@@ -29,11 +30,12 @@ export default function DestinationCard({ name, slug, sub, tag, spanRows }: Prop
         style={{ background: imgFailed ? gradient : undefined }}
       >
         {!imgFailed && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={`/images/destinations/${slug}.png`}
-            alt={name}
-            className="absolute inset-0 w-full h-full object-cover"
+            alt={`חופשה ב${name} — יעד מומלץ`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 50vw, 33vw"
             onError={() => setImgFailed(true)}
           />
         )}

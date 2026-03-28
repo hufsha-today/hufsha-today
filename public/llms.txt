@@ -1,0 +1,37 @@
+# חופשה היום — hufsha.today
+
+> הבלוג הישראלי לטיולים וחופשות. מדריכי יעדים, טיולים מאורגנים, הפלגות, כשר — הכל בעברית.
+
+## About
+
+חופשה היום (hufsha.today) is a Hebrew-language travel blog for Israeli travelers. We publish comprehensive destination guides, organized tour comparisons, cruise guides, kosher travel information, and family travel tips.
+
+## Content Categories
+
+- **יעדים (Destinations):** Greece, Italy, Cyprus, Budapest, Dubai — with city-level guides for Athens, Rhodes, Santorini, Crete, Rome, Venice, Florence, Larnaca, Paphos
+- **כשר בחו"ל (Kosher Travel):** Kosher hotels, restaurants, Chabad houses worldwide
+- **הפלגות (Cruises):** Cruises from Haifa port — MSC, Royal Caribbean, routes and pricing
+- **טיולים מאורגנים (Organized Tours):** Group tours from Israel to Montenegro, Greece, Italy and more
+- **חופשה עם ילדים (Family Travel):** Kid-friendly destinations, attractions, and practical tips
+
+## Key Pages
+
+- Homepage: https://hufsha.today
+- Greece guide: https://hufsha.today/greece
+- Italy guide: https://hufsha.today/italy
+- Cyprus guide: https://hufsha.today/cyprus
+- Budapest guide: https://hufsha.today/budapest
+- Dubai guide: https://hufsha.today/dubai
+- Kosher travel: https://hufsha.today/kosher
+- Cruises: https://hufsha.today/cruises
+- Organized tours: https://hufsha.today/organized-tours
+- Family travel: https://hufsha.today/with-kids
+- About: https://hufsha.today/about
+
+## Language
+
+All content is in Hebrew (עברית), right-to-left. The site serves Israeli travelers planning international vacations.
+
+## Contact
+
+hello@hufsha.today

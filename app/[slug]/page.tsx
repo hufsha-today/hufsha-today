@@ -31,13 +31,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dest = getDestinationBySlug(slug);
   if (dest) {
     return {
-      title: `${dest.name} — המדריך המלא לחופשה ב${dest.name} 2026 | חופשה היום`,
+      title: `${dest.name} — המדריך המלא לחופשה ב${dest.name} 2026`,
       description: `מתכננים חופשה ב${dest.name}? המדריך המלא: יעדים, מחירים, עונות, טיפים וכל מה שצריך לדעת.`,
       openGraph: {
-        title: `${dest.name} — המדריך המלא 2026 | חופשה היום`,
+        title: `${dest.name} — המדריך המלא 2026`,
         description: dest.description,
         locale: "he_IL",
         siteName: "חופשה היום",
+        images: [{
+          url: `https://hufsha.today/images/destinations/${slug}.png`,
+          width: 1200,
+          height: 630,
+          alt: `חופשה ב${dest.name}`,
+        }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${dest.name} — המדריך המלא 2026`,
+        images: [`https://hufsha.today/images/destinations/${slug}.png`],
       },
       alternates: { canonical: `https://hufsha.today/${slug}` },
     };
@@ -47,13 +58,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const city = getCityBySlug(slug);
   if (city) {
     return {
-      title: `${city.name} — המדריך המלא 2026 | חופשה היום`,
+      title: `${city.name} — המדריך המלא 2026`,
       description: `מתכננים טיול ל${city.name}? המדריך המלא: אטרקציות, מחירים, טיפים וכל מה שצריך לדעת.`,
       openGraph: {
-        title: `${city.name} — המדריך המלא 2026 | חופשה היום`,
+        title: `${city.name} — המדריך המלא 2026`,
         description: city.description,
         locale: "he_IL",
         siteName: "חופשה היום",
+        images: [{
+          url: `https://hufsha.today/images/destinations/${city.countrySlug}.png`,
+          width: 1200,
+          height: 630,
+          alt: city.name,
+        }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${city.name} — המדריך המלא 2026`,
+        images: [`https://hufsha.today/images/destinations/${city.countrySlug}.png`],
       },
       alternates: { canonical: `https://hufsha.today/${slug}` },
     };
@@ -74,8 +96,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: "he_IL",
       siteName: "חופשה היום",
       publishedTime: fm.date,
+      images: [{
+        url: `https://hufsha.today/images/posts/${slug}.png`,
+        width: 1200,
+        height: 630,
+        alt: fm.title,
+      }],
     },
-    twitter: { card: "summary_large_image", title: fm.title, description: fm.excerpt },
+    twitter: {
+      card: "summary_large_image",
+      title: fm.title,
+      description: fm.excerpt,
+      images: [`https://hufsha.today/images/posts/${slug}.png`],
+    },
     alternates: { canonical: `https://hufsha.today/${slug}` },
   };
 }
@@ -112,8 +145,18 @@ function BlogPostPage({ slug }: { slug: string }) {
     headline: fm.title,
     description: fm.excerpt,
     datePublished: fm.date,
-    author: { "@type": "Person", name: fm.author || "חופשה היום" },
-    publisher: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
+    dateModified: fm.date,
+    image: `https://hufsha.today/images/posts/${slug}.png`,
+    author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
+    publisher: {
+      "@type": "Organization",
+      name: "חופשה היום",
+      url: "https://hufsha.today",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://hufsha.today/images/mascot-logo-transparent.png",
+      },
+    },
     mainEntityOfPage: `https://hufsha.today/${slug}`,
     inLanguage: "he",
   };
@@ -128,13 +171,23 @@ function BlogPostPage({ slug }: { slug: string }) {
     })),
   };
 
+  const categorySlugMap: Record<string, string> = {
+    "עם ילדים": "with-kids",
+    "כשר": "kosher",
+    "הפלגות": "cruises",
+    "טיולים מאורגנים": "organized-tours",
+  };
+  const categoryUrl = categorySlugMap[fm.category]
+    ? `https://hufsha.today/${categorySlugMap[fm.category]}`
+    : undefined;
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "דף הבית", item: "https://hufsha.today" },
-      { "@type": "ListItem", position: 2, name: fm.category },
-      { "@type": "ListItem", position: 3, name: fm.title },
+      { "@type": "ListItem", position: 2, name: fm.category, ...(categoryUrl && { item: categoryUrl }) },
+      { "@type": "ListItem", position: 3, name: fm.title, item: `https://hufsha.today/${slug}` },
     ],
   };
 
@@ -268,12 +321,19 @@ function CountryPage({ slug }: { slug: string }) {
     headline: `${dest.name} — המדריך המלא 2026`,
     description: dest.description,
     datePublished: "2026-03-27",
-    author: { "@type": "Organization", name: "חופשה היום" },
+    dateModified: "2026-03-27",
+    image: `https://hufsha.today/images/destinations/${slug}.png`,
+    author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
     publisher: {
       "@type": "Organization",
       name: "חופשה היום",
       url: "https://hufsha.today",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://hufsha.today/images/mascot-logo-transparent.png",
+      },
     },
+    mainEntityOfPage: `https://hufsha.today/${slug}`,
     inLanguage: "he",
   };
 
@@ -507,6 +567,28 @@ function CityPage({ slug }: { slug: string }) {
       : undefined,
   };
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `${city.name} — המדריך המלא 2026`,
+    description: city.description,
+    datePublished: "2026-03-27",
+    dateModified: "2026-03-27",
+    image: `https://hufsha.today/images/destinations/${city.countrySlug}.png`,
+    author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
+    publisher: {
+      "@type": "Organization",
+      name: "חופשה היום",
+      url: "https://hufsha.today",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://hufsha.today/images/mascot-logo-transparent.png",
+      },
+    },
+    mainEntityOfPage: `https://hufsha.today/${slug}`,
+    inLanguage: "he",
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -675,6 +757,10 @@ function CityPage({ slug }: { slug: string }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(placeSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <script
         type="application/ld+json"

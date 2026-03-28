@@ -117,9 +117,9 @@ export default function HomePage() {
       <div className="max-w-[1100px] mx-auto px-7 pb-14">
         <div className="flex justify-between items-baseline mb-6">
           <h2 className="text-[22px] font-[800] text-dark">מאמרים אחרונים</h2>
-          <Link href="#" className="text-[13px] text-orange font-medium">
-            הכל ←
-          </Link>
+          <span className="text-[13px] text-muted font-medium">
+            הכל
+          </span>
         </div>
 
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1">

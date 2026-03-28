@@ -59,7 +59,7 @@ export default function WithKidsPage() {
         name: "דף הבית",
         item: "https://hufsha.today",
       },
-      { "@type": "ListItem", position: 2, name: "עם ילדים" },
+      { "@type": "ListItem", position: 2, name: "עם ילדים", item: "https://hufsha.today/with-kids" },
     ],
   };
 

@@ -59,7 +59,7 @@ export default function CruisesPage() {
         name: "דף הבית",
         item: "https://hufsha.today",
       },
-      { "@type": "ListItem", position: 2, name: "הפלגות" },
+      { "@type": "ListItem", position: 2, name: "הפלגות", item: "https://hufsha.today/cruises" },
     ],
   };
 
