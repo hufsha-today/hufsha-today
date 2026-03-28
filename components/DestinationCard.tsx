@@ -31,7 +31,7 @@ export default function DestinationCard({ name, slug, sub, tag, spanRows }: Prop
       >
         {!imgFailed && (
           <Image
-            src={`/images/destinations/${slug}.png`}
+            src={`/images/destinations/${slug}.jpg`}
             alt={`חופשה ב${name} — יעד מומלץ`}
             fill
             className="object-cover"

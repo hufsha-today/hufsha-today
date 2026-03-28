@@ -32,7 +32,7 @@ export default function PostCard({ post }: { post: PostFrontmatter }) {
         >
           {!imgFailed && (
             <Image
-              src={`/images/posts/${post.slug}.png`}
+              src={`/images/posts/${post.slug}.jpg`}
               alt={post.title}
               fill
               className="object-cover"

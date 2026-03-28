@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         locale: "he_IL",
         siteName: "חופשה היום",
         images: [{
-          url: `https://hufsha.today/images/destinations/${slug}.png`,
+          url: `https://hufsha.today/images/destinations/${slug}.jpg`,
           width: 1200,
           height: 630,
           alt: `חופשה ב${dest.name}`,
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title: `${dest.name} — המדריך המלא 2026`,
-        images: [`https://hufsha.today/images/destinations/${slug}.png`],
+        images: [`https://hufsha.today/images/destinations/${slug}.jpg`],
       },
       alternates: { canonical: `https://hufsha.today/${slug}` },
     };
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         locale: "he_IL",
         siteName: "חופשה היום",
         images: [{
-          url: `https://hufsha.today/images/destinations/${city.countrySlug}.png`,
+          url: `https://hufsha.today/images/destinations/${city.countrySlug}.jpg`,
           width: 1200,
           height: 630,
           alt: city.name,
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title: `${city.name} — המדריך המלא 2026`,
-        images: [`https://hufsha.today/images/destinations/${city.countrySlug}.png`],
+        images: [`https://hufsha.today/images/destinations/${city.countrySlug}.jpg`],
       },
       alternates: { canonical: `https://hufsha.today/${slug}` },
     };
@@ -97,7 +97,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "חופשה היום",
       publishedTime: fm.date,
       images: [{
-        url: `https://hufsha.today/images/posts/${slug}.png`,
+        url: `https://hufsha.today/images/posts/${slug}.jpg`,
         width: 1200,
         height: 630,
         alt: fm.title,
@@ -107,7 +107,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: fm.title,
       description: fm.excerpt,
-      images: [`https://hufsha.today/images/posts/${slug}.png`],
+      images: [`https://hufsha.today/images/posts/${slug}.jpg`],
     },
     alternates: { canonical: `https://hufsha.today/${slug}` },
   };
@@ -146,7 +146,7 @@ function BlogPostPage({ slug }: { slug: string }) {
     description: fm.excerpt,
     datePublished: fm.date,
     dateModified: fm.date,
-    image: `https://hufsha.today/images/posts/${slug}.png`,
+    image: `https://hufsha.today/images/posts/${slug}.jpg`,
     author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
     publisher: {
       "@type": "Organization",
@@ -226,7 +226,7 @@ function BlogPostPage({ slug }: { slug: string }) {
 
         <div className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden mb-10 bg-border">
           <FallbackImage
-            src={`/images/posts/${slug}.png`}
+            src={`/images/posts/${slug}.jpg`}
             alt={fm.title}
             fill
             className="object-cover"
@@ -322,7 +322,7 @@ function CountryPage({ slug }: { slug: string }) {
     description: dest.description,
     datePublished: "2026-03-27",
     dateModified: "2026-03-27",
-    image: `https://hufsha.today/images/destinations/${slug}.png`,
+    image: `https://hufsha.today/images/destinations/${slug}.jpg`,
     author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
     publisher: {
       "@type": "Organization",
@@ -379,7 +379,7 @@ function CountryPage({ slug }: { slug: string }) {
         {/* Hero */}
         <div className="relative w-full h-[250px] sm:h-[350px] rounded-xl overflow-hidden mb-8 bg-border">
           <FallbackImage
-            src={`/images/destinations/${slug}.png`}
+            src={`/images/destinations/${slug}.jpg`}
             alt={dest.name}
             fill
             className="object-cover"
@@ -574,7 +574,7 @@ function CityPage({ slug }: { slug: string }) {
     description: city.description,
     datePublished: "2026-03-27",
     dateModified: "2026-03-27",
-    image: `https://hufsha.today/images/destinations/${city.countrySlug}.png`,
+    image: `https://hufsha.today/images/destinations/${city.countrySlug}.jpg`,
     author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
     publisher: {
       "@type": "Organization",

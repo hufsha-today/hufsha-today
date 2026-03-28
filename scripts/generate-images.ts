@@ -88,8 +88,6 @@ async function generateImage(
       generationConfig: {
         responseModalities: ["IMAGE", "TEXT"],
         temperature: 0.8,
-        image_size: "2K",
-        aspectRatio: "16:9",
       },
     }),
   });
