@@ -74,7 +74,7 @@ function buildResearchPrompt(topic: string): string {
 async function askGemini(prompt: string): Promise<string> {
   if (!GEMINI_KEY) return '⚠️ GEMINI_API_KEY חסר ב-.env.local';
 
-  const models = ['gemini-3-ultra', 'gemini-3.1-pro-preview'];
+  const models = ['gemini-3.1-pro-preview'];
 
   for (const model of models) {
     try {
