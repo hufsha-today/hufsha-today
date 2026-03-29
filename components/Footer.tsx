@@ -34,7 +34,7 @@ export default function Footer() {
           <h4 className="text-[13px] font-bold text-white mb-2.5">עוד</h4>
           <Link href="/about" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">אודות</Link>
           <Link href="/about" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">צור קשר</Link>
-          <Link href="/about" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">מדיניות פרטיות</Link>
+          <Link href="/privacy-policy" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">מדיניות פרטיות</Link>
         </div>
       </div>
 

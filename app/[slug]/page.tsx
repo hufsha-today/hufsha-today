@@ -176,9 +176,12 @@ function BlogPostPage({ slug }: { slug: string }) {
     "כשר": "kosher",
     "הפלגות": "cruises",
     "טיולים מאורגנים": "organized-tours",
+    "אטרקציות": "with-kids",
+    "מדריכים": "organized-tours",
   };
-  const categoryUrl = categorySlugMap[fm.category]
-    ? `https://hufsha.today/${categorySlugMap[fm.category]}`
+  const catSlug = categorySlugMap[fm.category];
+  const categoryUrl = catSlug
+    ? `https://hufsha.today/${catSlug}`
     : undefined;
 
   const breadcrumbSchema = {
@@ -197,7 +200,7 @@ function BlogPostPage({ slug }: { slug: string }) {
         <Breadcrumbs
           items={[
             { label: "דף הבית", href: "/" },
-            { label: fm.category },
+            { label: fm.category, href: catSlug ? `/${catSlug}` : undefined },
             { label: fm.title },
           ]}
         />

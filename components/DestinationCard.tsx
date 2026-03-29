@@ -11,9 +11,10 @@ interface Props {
   sub?: string;
   tag?: string;
   spanRows?: boolean;
+  priority?: boolean;
 }
 
-export default function DestinationCard({ name, slug, sub, tag, spanRows }: Props) {
+export default function DestinationCard({ name, slug, sub, tag, spanRows, priority }: Props) {
   const gradient = getDestinationGradient(name);
   const [imgFailed, setImgFailed] = useState(false);
 
@@ -36,6 +37,7 @@ export default function DestinationCard({ name, slug, sub, tag, spanRows }: Prop
             fill
             className="object-cover"
             sizes="(max-width: 768px) 50vw, 33vw"
+            priority={priority}
             onError={() => setImgFailed(true)}
           />
         )}

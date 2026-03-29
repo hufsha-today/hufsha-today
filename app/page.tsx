@@ -82,6 +82,7 @@ export default function HomePage() {
                 sub={`${d.flightTime} טיסה · ${count} מאמרים`}
                 tag={i === 0 ? "הכי מחופש" : undefined}
                 spanRows={i === 0}
+                priority={i < 3}
               />
             );
           })}
