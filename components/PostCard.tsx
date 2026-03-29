@@ -20,7 +20,7 @@ export default function PostCard({ post }: { post: PostFrontmatter }) {
   const badge = categoryBadge[post.category] || { bg: "#eee", text: "#555" };
   const gradient = getDestinationGradient(post.destination);
 
-  const readingTime = Math.max(1, Math.round((post.excerpt?.length || 50) / 8));
+  const readingTime = post.readingTime || 1;
 
   return (
     <Link href={`/${post.slug}`} className="group block no-underline">

@@ -137,7 +137,7 @@ function BlogPostPage({ slug }: { slug: string }) {
   const fm = post.frontmatter;
   const related = getRelatedPosts(post, 3);
   const gradient = getDestinationGradient(fm.destination);
-  const readingTime = Math.max(1, Math.round(post.content.split(/\s+/).length / 200));
+  const readingTime = fm.readingTime || 1;
 
   const articleSchema = {
     "@context": "https://schema.org",

@@ -19,6 +19,7 @@ export interface PostFrontmatter {
   tldr: string;
   image?: string;
   author?: string;
+  readingTime?: number;
   factBox: {
     flightTime: string;
     currency: string;
@@ -45,8 +46,9 @@ export function getAllPosts(): Post[] {
       const raw = fs.readFileSync(path.join(postsDir, f), "utf8");
       const { data, content } = matter(raw);
       const result = remark().use(remarkGfm).use(html, { sanitize: false }).processSync(content);
+      const readingTime = Math.max(1, Math.ceil(content.split(/\s+/).length / 200));
       return {
-        frontmatter: data as PostFrontmatter,
+        frontmatter: { ...(data as PostFrontmatter), readingTime },
         content,
         htmlContent: String(result),
       };
