@@ -60,10 +60,10 @@ export default function PostCard({ post }: { post: PostFrontmatter }) {
           <div className="text-base font-bold text-dark leading-[1.4] mb-1.5 group-hover:text-orange transition-colors">
             {post.title}
           </div>
-          <div className="text-[13px] text-[#aaa] leading-[1.5] line-clamp-2">
+          <div className="text-[13px] text-[#777] leading-[1.5] line-clamp-2">
             {post.excerpt}
           </div>
-          <div className="text-[11px] text-[#ddd] mt-2.5 pt-2.5 border-t border-[#f5f3f0]">
+          <div className="text-[11px] text-[#999] mt-2.5 pt-2.5 border-t border-[#f5f3f0]">
             {new Date(post.date).toLocaleDateString("he-IL", {
               year: "numeric",
               month: "long",

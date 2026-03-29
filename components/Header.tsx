@@ -22,7 +22,6 @@ export default function Header() {
             height={66}
             className="relative animate-[walkIn_1.2s_ease-out_forwards]"
             style={{ marginRight: "-18px" }}
-            priority
           />
           <span className="text-[30px] font-[800] text-dark tracking-[-0.5px]">
             <span className="text-orange">חופשה</span> היום
@@ -40,7 +39,7 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden flex flex-col gap-1.5 bg-transparent border-none cursor-pointer p-2"
+          className="md:hidden flex flex-col gap-1.5 bg-transparent border-none cursor-pointer p-3"
           aria-label="תפריט"
         >
           <span className={`block w-5 h-0.5 bg-dark transition-all ${menuOpen ? "rotate-45 translate-y-[4px]" : ""}`} />

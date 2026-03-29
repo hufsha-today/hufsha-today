@@ -15,26 +15,26 @@ export default function Footer() {
 
         <div>
           <h4 className="text-[13px] font-bold text-white mb-2.5">יעדים</h4>
-          <Link href="/greece" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">יוון</Link>
-          <Link href="/italy" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">איטליה</Link>
-          <Link href="/cyprus" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">קפריסין</Link>
-          <Link href="/budapest" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">בודפשט</Link>
-          <Link href="/dubai" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">דובאי</Link>
+          <Link href="/greece" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">יוון</Link>
+          <Link href="/italy" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">איטליה</Link>
+          <Link href="/cyprus" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">קפריסין</Link>
+          <Link href="/budapest" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">בודפשט</Link>
+          <Link href="/dubai" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">דובאי</Link>
         </div>
 
         <div>
           <h4 className="text-[13px] font-bold text-white mb-2.5">קטגוריות</h4>
-          <Link href="/organized-tours" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">טיולים מאורגנים</Link>
-          <Link href="/cruises" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">הפלגות</Link>
-          <Link href="/kosher" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">כשר</Link>
-          <Link href="/with-kids" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">עם ילדים</Link>
+          <Link href="/organized-tours" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">טיולים מאורגנים</Link>
+          <Link href="/cruises" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">הפלגות</Link>
+          <Link href="/kosher" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">כשר</Link>
+          <Link href="/with-kids" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">עם ילדים</Link>
         </div>
 
         <div>
           <h4 className="text-[13px] font-bold text-white mb-2.5">עוד</h4>
-          <Link href="/about" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">אודות</Link>
-          <Link href="/about" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">צור קשר</Link>
-          <Link href="/privacy-policy" className="block text-[#777] text-[13px] mb-1.5 hover:text-orange transition-colors">מדיניות פרטיות</Link>
+          <Link href="/about" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">אודות</Link>
+          <Link href="/about" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">צור קשר</Link>
+          <Link href="/privacy-policy" className="block text-[#777] text-[13px] py-1.5 hover:text-orange transition-colors">מדיניות פרטיות</Link>
         </div>
       </div>
 

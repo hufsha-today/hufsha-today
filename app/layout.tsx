@@ -18,15 +18,13 @@ export const metadata: Metadata = {
   },
   description:
     "הבלוג הישראלי לטיולים וחופשות. מדריכי יעדים, טיולים מאורגנים, הפלגות, כשר — הכל בעברית.",
-  keywords: [
-    "חופשה",
-    "טיולים",
-    "יעדים",
-    "הפלגות",
-    "כשר בחול",
-    "טיולים מאורגנים",
-    "חופשה עם ילדים",
-  ],
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large" as const,
+    "max-video-preview": -1,
+  },
   openGraph: {
     type: "website",
     locale: "he_IL",
@@ -72,9 +70,9 @@ export default function RootLayout({
       <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-E8S24VE12X"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
