@@ -30,7 +30,7 @@ export default function Header() {
 
         {/* Desktop nav links */}
         <div className="hidden md:flex gap-7">
-          <Link href="/greece" className="text-[#666] text-sm font-medium transition-colors hover:text-orange">יעדים</Link>
+          <Link href="/destinations" className="text-[#666] text-sm font-medium transition-colors hover:text-orange">יעדים</Link>
           <Link href="/organized-tours" className="text-[#666] text-sm font-medium transition-colors hover:text-orange">טיולים מאורגנים</Link>
           <Link href="/cruises" className="text-[#666] text-sm font-medium transition-colors hover:text-orange">הפלגות</Link>
           <Link href="/kosher" className="text-[#666] text-sm font-medium transition-colors hover:text-orange">כשר</Link>
@@ -51,7 +51,7 @@ export default function Header() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden bg-[rgba(250,249,247,0.98)] border-t border-border px-7 py-4 flex flex-col gap-4">
-          <Link href="/greece" className="text-[#666] text-sm font-medium" onClick={() => setMenuOpen(false)}>יעדים</Link>
+          <Link href="/destinations" className="text-[#666] text-sm font-medium" onClick={() => setMenuOpen(false)}>יעדים</Link>
           <Link href="/organized-tours" className="text-[#666] text-sm font-medium" onClick={() => setMenuOpen(false)}>טיולים מאורגנים</Link>
           <Link href="/cruises" className="text-[#666] text-sm font-medium" onClick={() => setMenuOpen(false)}>הפלגות</Link>
           <Link href="/kosher" className="text-[#666] text-sm font-medium" onClick={() => setMenuOpen(false)}>כשר</Link>
