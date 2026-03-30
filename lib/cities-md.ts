@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { remark } from "remark";
+import remarkGfm from "remark-gfm";
+import remarkHtml from "remark-html";
 
 const citiesDir = path.join(process.cwd(), "content", "cities");
 
@@ -33,7 +36,11 @@ function parseArticleSections(
     const title = part.substring(0, newlineIndex).trim();
     const sectionContent = part.substring(newlineIndex + 1).trim();
     if (title && sectionContent) {
-      sections.push({ title, content: sectionContent });
+      const processed = remark()
+        .use(remarkGfm)
+        .use(remarkHtml, { sanitize: false })
+        .processSync(sectionContent);
+      sections.push({ title, content: String(processed) });
     }
   }
   return sections;

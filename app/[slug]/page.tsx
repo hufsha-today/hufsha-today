@@ -430,9 +430,7 @@ function CountryPage({ slug }: { slug: string }) {
           {dest.articleSections.map((section, i) => (
             <div key={i}>
               <h2>{section.title}</h2>
-              {section.content.split("\n\n").map((para, j) => (
-                <p key={j}>{para}</p>
-              ))}
+              <div dangerouslySetInnerHTML={{ __html: section.content }} />
             </div>
           ))}
         </div>
@@ -687,9 +685,7 @@ function CityPage({ slug }: { slug: string }) {
           {city.articleSections.map((section, i) => (
             <div key={i}>
               <h2>{section.title}</h2>
-              {section.content.split("\n\n").map((para, j) => (
-                <p key={j}>{para}</p>
-              ))}
+              <div dangerouslySetInnerHTML={{ __html: section.content }} />
             </div>
           ))}
         </div>
