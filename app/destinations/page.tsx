@@ -24,6 +24,11 @@ export default function DestinationsPage() {
     ).length;
   }
 
+  // Sort destinations by article count (most articles first)
+  const sorted = [...destinations]
+    .map((d) => ({ dest: d, count: getPostCount(d.name, d.country) }))
+    .sort((a, b) => b.count - a.count);
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -57,18 +62,15 @@ export default function DestinationsPage() {
         </p>
 
         <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1 max-md:[&>*]:h-[180px] [&>*]:h-[240px]">
-          {destinations.map((d, i) => {
-            const count = getPostCount(d.name, d.country);
-            return (
-              <DestinationCard
-                key={d.slug}
-                name={d.name}
-                slug={d.slug}
-                sub={`${d.flightTime} טיסה · ${count} מאמרים`}
-                priority={i < 3}
-              />
-            );
-          })}
+          {sorted.map(({ dest: d, count }, i) => (
+            <DestinationCard
+              key={d.slug}
+              name={d.name}
+              slug={d.slug}
+              sub={`${d.flightTime} טיסה · ${count} מאמרים`}
+              priority={i < 3}
+            />
+          ))}
         </div>
       </section>
     </>

@@ -152,6 +152,24 @@ const destinationPrompts: Record<string, string> = {
   rome:
     "Photorealistic photograph of the Colosseum in Rome at golden hour, ancient stone arches with warm amber light, clear sky, historic atmosphere" +
     VIVID,
+  'czech-republic':
+    "Photorealistic photograph of Prague Old Town Square with astronomical clock tower and Church of Our Lady before Tyn, cobblestone streets, warm golden hour sunlight, historic Gothic and Baroque architecture" +
+    VIVID,
+  albania:
+    "Photorealistic photograph of Ksamil beach in Albania, turquoise crystal clear water over white sand, small islands in the distance, Albanian Riviera coastline, warm summer afternoon sunlight" +
+    VIVID,
+  austria:
+    "Photorealistic photograph of Hallstatt village Austria, alpine lake with mirror reflection, colorful traditional houses at the base of dramatic mountains, morning golden light, misty atmosphere" +
+    VIVID,
+  germany:
+    "Photorealistic photograph of Neuschwanstein Castle in Bavaria Germany, fairy tale castle on green hillside, Bavarian Alps in background, dramatic clouds, warm afternoon sunlight" +
+    VIVID,
+  georgia:
+    "Photorealistic photograph of Gergeti Trinity Church in Kazbegi Georgia, ancient stone church on mountaintop with snow-capped Caucasus mountains behind, dramatic clouds, golden hour light" +
+    VIVID,
+  montenegro:
+    "Photorealistic photograph of Bay of Kotor Montenegro, turquoise water surrounded by dramatic mountains, medieval old town on the shore, cruise boats in harbor, warm Mediterranean afternoon light" +
+    VIVID,
 };
 
 async function main() {
