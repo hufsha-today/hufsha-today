@@ -16,7 +16,7 @@ factBox:
   currency: "אירו (EUR)"
   language: "יוונית (אנגלית נפוצה מאוד)"
   bestSeason: "מאי-יוני, ספטמבר-אוקטובר"
-  dailyBudget: "200-450 אירו למשפחה של 4 (משוער, נכון ל-2026)"
+  dailyBudget: "265-525 אירו למשפחה של 4 עם מלון כשר (משוער, נכון ל-2026)"
   temperature: "18-31°C (אביב-קיץ)"
 faq:
   - q: "האם Blue Lagoon Kosher Hotel פתוח כל השנה?"
