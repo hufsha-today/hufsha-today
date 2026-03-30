@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
-import { getAllDestinations } from "@/lib/destinations";
+import { getAllCountries } from "@/lib/countries";
 import DestinationCard from "@/components/DestinationCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function DestinationsPage() {
   const posts = getAllPosts();
-  const destinations = getAllDestinations();
+  const destinations = getAllCountries();
 
   function getPostCount(destName: string, country?: string) {
     return posts.filter(

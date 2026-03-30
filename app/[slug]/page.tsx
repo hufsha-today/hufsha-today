@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import FallbackImage from "@/components/FallbackImage";
 import { getAllPosts, getPostBySlug, getRelatedPosts, getPostsByDestination } from "@/lib/posts";
-import { getAllDestinations, getDestinationBySlug } from "@/lib/destinations";
-import { getAllCities, getCityBySlug, getCitiesByCountry } from "@/lib/cities";
+import { getAllCountries, getCountryBySlug } from "@/lib/countries";
+import { getAllCities, getCityBySlug, getCitiesByCountry } from "@/lib/cities-md";
 import { getDestinationGradient } from "@/lib/gradients";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import TldrBox from "@/components/TldrBox";
@@ -19,7 +19,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
   const postParams = getAllPosts().map((p) => ({ slug: p.frontmatter.slug }));
-  const destParams = getAllDestinations().map((d) => ({ slug: d.slug }));
+  const destParams = getAllCountries().map((d) => ({ slug: d.slug }));
   const cityParams = getAllCities().map((c) => ({ slug: c.slug }));
   return [...postParams, ...destParams, ...cityParams];
 }
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
   // Check destination first
-  const dest = getDestinationBySlug(slug);
+  const dest = getCountryBySlug(slug);
   if (dest) {
     return {
       title: `${dest.name} — המדריך המלא לחופשה ב${dest.name} 2026`,
@@ -117,7 +117,7 @@ export default async function SlugPage({ params }: Props) {
   const { slug } = await params;
 
   // Check destination first
-  const dest = getDestinationBySlug(slug);
+  const dest = getCountryBySlug(slug);
   if (dest) return <CountryPage slug={slug} />;
 
   // Check city
@@ -296,7 +296,7 @@ function BlogPostPage({ slug }: { slug: string }) {
 
 /* ─── Country Page ─── */
 function CountryPage({ slug }: { slug: string }) {
-  const dest = getDestinationBySlug(slug)!;
+  const dest = getCountryBySlug(slug)!;
   const posts = getAllPosts().filter(
     (p) =>
       p.frontmatter.destination === dest.name ||
@@ -305,7 +305,7 @@ function CountryPage({ slug }: { slug: string }) {
   );
   const cities = getCitiesByCountry(slug);
   const gradient = getDestinationGradient(dest.name);
-  const allDests = getAllDestinations();
+  const allDests = getAllCountries();
   const similar = dest.similarDestinations
     .map((s) => allDests.find((d) => d.slug === s))
     .filter(Boolean);
@@ -549,7 +549,7 @@ function CountryPage({ slug }: { slug: string }) {
 /* ─── City Page ─── */
 function CityPage({ slug }: { slug: string }) {
   const city = getCityBySlug(slug)!;
-  const dest = getDestinationBySlug(city.countrySlug);
+  const dest = getCountryBySlug(city.countrySlug);
   const posts = getPostsByDestination(city.name);
   const siblingsRaw = getCitiesByCountry(city.countrySlug);
   const siblings = siblingsRaw.filter((c) => c.slug !== slug);

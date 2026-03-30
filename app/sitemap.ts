@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
-import { getAllDestinations } from "@/lib/destinations";
-import { getAllCities } from "@/lib/cities";
+import { getAllCountries } from "@/lib/countries";
+import { getAllCities } from "@/lib/cities-md";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://hufsha.today";
@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(p.frontmatter.date),
   }));
 
-  const destinations = getAllDestinations().map((d) => ({
+  const destinations = getAllCountries().map((d) => ({
     url: `${base}/${d.slug}`,
     lastModified: new Date("2026-03-27"),
   }));
