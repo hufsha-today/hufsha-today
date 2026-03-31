@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         locale: "he_IL",
         siteName: "חופשה היום",
         images: [{
-          url: `https://hufsha.today/images/destinations/${city.countrySlug}.jpg`,
+          url: `https://hufsha.today/images/destinations/${slug}.jpg`,
           width: 1200,
           height: 630,
           alt: city.name,
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title: `${city.name} — המדריך המלא 2026`,
-        images: [`https://hufsha.today/images/destinations/${city.countrySlug}.jpg`],
+        images: [`https://hufsha.today/images/destinations/${slug}.jpg`],
       },
       alternates: { canonical: `https://hufsha.today/${slug}` },
     };
@@ -575,7 +575,7 @@ function CityPage({ slug }: { slug: string }) {
     description: city.description,
     datePublished: "2026-03-27",
     dateModified: "2026-03-27",
-    image: `https://hufsha.today/images/destinations/${city.countrySlug}.jpg`,
+    image: `https://hufsha.today/images/destinations/${slug}.jpg`,
     author: { "@type": "Organization", name: "חופשה היום", url: "https://hufsha.today" },
     publisher: {
       "@type": "Organization",
@@ -641,9 +641,14 @@ function CityPage({ slug }: { slug: string }) {
 
         {/* Hero */}
         <div className="relative w-full h-[250px] sm:h-[350px] rounded-xl overflow-hidden mb-8 bg-border">
-          <div
-            className="absolute inset-0"
-            style={{ background: gradient }}
+          <FallbackImage
+            src={`/images/destinations/${slug}.jpg`}
+            alt={city.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 740px"
+            priority
+            fallbackGradient={gradient}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           <div className="absolute bottom-6 right-6 text-white">
