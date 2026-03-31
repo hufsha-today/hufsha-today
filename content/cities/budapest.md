@@ -1,7 +1,8 @@
 ---
 slug: budapest
 name: בודפשט
-country: הונגריה
+countrySlug: hungary
+countryName: הונגריה
 flag: hu
 description: >-
   בודפשט מציעה ארכיטקטורה מרהיבה על גדות הדנובה, מרחצאות תרמיים עם מעיינות
@@ -20,13 +21,6 @@ language: הונגרית
 bestSeason: אפריל-אוקטובר
 dailyBudget: '$100-150 לזוג (משוער, נכון ל-2026)'
 temperature: 0-30°C
-subDestinations:
-  - name: בודה
-    slug: buda
-  - name: פשט
-    slug: pest
-  - name: אגם בלטון
-    slug: balaton
 faq:
   - q: כמה ימים מומלץ בבודפשט?
     a: >-
@@ -66,9 +60,6 @@ faq:
       ונוסעת כ-30 דקות תלוי בתנועה. יש גם שירות מיניבוס שיתופי שמוריד ליד המלון.
       כדאי להמיר סכום קטן של פורינט בשדה התעופה לנסיעת האוטובוס, ואת השאר להמיר
       בעיר בשער טוב יותר.
-similarDestinations:
-  - italy
-  - dubai
 ---
 
 ## למה דווקא בודפשט?

@@ -131,8 +131,8 @@ const destinationPrompts: Record<string, string> = {
   cyprus:
     "Photorealistic photograph of a turquoise Mediterranean beach in Paphos Cyprus, crystal clear shallow water over white sand, rocky coastline, warm afternoon sunlight" +
     VIVID,
-  budapest:
-    "Photorealistic photograph of the Hungarian Parliament building along the Danube river in Budapest at sunset, chain bridge in foreground, warm golden reflections on water" +
+  hungary:
+    "Photorealistic photograph of the Hungarian Parliament building along the Danube river in Budapest at sunset, chain bridge in foreground, warm golden reflections on water, panoramic cityscape" +
     VIVID,
   dubai:
     "Photorealistic photograph of Dubai skyline with Burj Khalifa at sunset, modern glass towers, golden hour lighting reflecting off buildings, desert metropolis atmosphere" +

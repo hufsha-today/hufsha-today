@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { getAllCountries } from "@/lib/countries";
-import DestinationCard from "@/components/DestinationCard";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import DestinationsFilter from "@/components/DestinationsFilter";
 
 export const metadata: Metadata = {
   title: "כל היעדים | חופשה היום",
   description:
-    "כל היעדים שלנו במקום אחד — יוון, בודפשט, איטליה, קפריסין, דובאי ועוד. מדריכי טיולים בעברית עם טיפים, תקציבים וכשרות.",
+    "כל היעדים שלנו במקום אחד — יוון, הונגריה, איטליה, קפריסין, דובאי ועוד. מדריכי טיולים בעברית עם טיפים, תקציבים וכשרות.",
   alternates: { canonical: "https://hufsha.today/destinations" },
 };
 
@@ -26,8 +26,23 @@ export default function DestinationsPage() {
 
   // Sort destinations by article count (most articles first)
   const sorted = [...destinations]
-    .map((d) => ({ dest: d, count: getPostCount(d.name, d.country) }))
+    .map((d) => ({
+      slug: d.slug,
+      name: d.name,
+      flightTime: d.flightTime,
+      regionSlug: d.regionSlug,
+      count: getPostCount(d.name, d.country),
+    }))
     .sort((a, b) => b.count - a.count);
+
+  // Extract unique regions preserving order
+  const regionMap = new Map<string, string>();
+  for (const d of destinations) {
+    if (d.regionSlug && d.region && !regionMap.has(d.regionSlug)) {
+      regionMap.set(d.regionSlug, d.region);
+    }
+  }
+  const regions = Array.from(regionMap, ([slug, label]) => ({ slug, label }));
 
   const schema = {
     "@context": "https://schema.org",
@@ -61,17 +76,7 @@ export default function DestinationsPage() {
           תקציבים ומידע על כשרות. בחרו יעד שמעניין אתכם והתחילו לתכנן את החופשה הבאה.
         </p>
 
-        <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1 max-md:[&>*]:h-[180px] [&>*]:h-[240px]">
-          {sorted.map(({ dest: d, count }, i) => (
-            <DestinationCard
-              key={d.slug}
-              name={d.name}
-              slug={d.slug}
-              sub={`${d.flightTime} טיסה · ${count} מאמרים`}
-              priority={i < 3}
-            />
-          ))}
-        </div>
+        <DestinationsFilter destinations={sorted} regions={regions} />
       </section>
     </>
   );

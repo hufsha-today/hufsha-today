@@ -8,6 +8,7 @@ export const destinationGradients: Record<string, string> = {
   'בודפשט': 'linear-gradient(135deg, #4a148c, #7b1fa2, #e040fb)',
   'budapest': 'linear-gradient(135deg, #4a148c, #7b1fa2, #e040fb)',
   'הונגריה': 'linear-gradient(135deg, #4a148c, #7b1fa2, #e040fb)',
+  'hungary': 'linear-gradient(135deg, #4a148c, #7b1fa2, #e040fb)',
   'דובאי': 'linear-gradient(135deg, #bf360c, #ff6e40, #ffd740)',
   'dubai': 'linear-gradient(135deg, #bf360c, #ff6e40, #ffd740)',
   'תאילנד': 'linear-gradient(135deg, #e65100, #ff9800, #4caf50)',

@@ -12,6 +12,8 @@ export interface Country {
   name: string;
   country: string;
   flag: string;
+  region?: string;
+  regionSlug?: string;
   description: string;
   tldr: string;
   flightTime: string;
