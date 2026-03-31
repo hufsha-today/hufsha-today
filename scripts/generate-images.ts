@@ -170,6 +170,18 @@ const destinationPrompts: Record<string, string> = {
   montenegro:
     "Photorealistic photograph of Bay of Kotor Montenegro, turquoise water surrounded by dramatic mountains, medieval old town on the shore, cruise boats in harbor, warm Mediterranean afternoon light" +
     VIVID,
+  venice:
+    "Photorealistic photograph of Venice Grand Canal Italy, gondolas on turquoise water, historic Venetian palaces on both sides, Rialto bridge in the distance, warm golden hour sunlight, romantic atmosphere" +
+    VIVID,
+  florence:
+    "Photorealistic photograph of Florence Italy panorama from Piazzale Michelangelo, Duomo cathedral dome dominating the skyline, Arno river below, terracotta rooftops, warm sunset light over Tuscany hills" +
+    VIVID,
+  paphos:
+    "Photorealistic photograph of Paphos harbor Cyprus, medieval castle at the entrance of the old port, fishing boats on calm turquoise water, Mediterranean coastal town, warm afternoon golden light" +
+    VIVID,
+  larnaca:
+    "Photorealistic photograph of Finikoudes promenade in Larnaca Cyprus, palm tree lined beachfront walkway, turquoise Mediterranean sea, sandy beach, bright sunny day, coastal resort atmosphere" +
+    VIVID,
 };
 
 async function main() {
